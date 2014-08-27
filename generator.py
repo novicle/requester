@@ -49,23 +49,23 @@ MAX_DIRECT_DEAL_ID = 1 << 62
 MAX_MATCHING_ADGROUPS = 3
 
 DIMENSIONS = [
-    (468, 60),
-    (120, 600),
-    (728, 90),
+#    (468, 60),
+#    (120, 600),
+#    (728, 90),
     (300, 250),
-    (250, 250),
-    (336, 280),
-    (120, 240),
-    (125, 125),
-    (160, 600),
-    (180, 150),
-    (110, 32),
-    (120, 60),
-    (180, 60),
-    (420, 600),
-    (420, 200),
-    (234, 60),
-    (200, 200),
+#    (250, 250),
+#    (336, 280),
+#    (120, 240),
+#    (125, 125),
+#    (160, 600),
+#    (180, 150),
+#    (110, 32),
+#    (120, 60),
+#    (180, 60),
+#    (420, 600),
+#    (420, 200),
+#    (234, 60),
+#    (200, 200),
 ]
 
 MAX_SLOT_ID = 200
@@ -125,11 +125,14 @@ MAX_EXCLUDED_BUYER_NETWORKS = 2
 
 MAX_INCLUDED_VENDOR_TYPES = 10
 VENDOR_TYPES = [
-    0, 10, 28, 42, 51, 65, 71, 92, 94, 113, 126, 128, 129, 130, 143, 144, 145,
-    146, 147, 148, 149, 152, 179, 194, 198, 225, 226, 227, 228, 229, 230, 231,
-    232, 233, 234, 235, 236, 237, 238, 255, 303,  311, 312, 313, 314, 315, 316,
+    #0, 10, 28, 42, 51, 65, 71, 92, 94, 
+    113, 117, 
+    #126, 128, 129, 130, 143, 144, 145,
+    #146, 147, 148, 149, 152, 179, 194, 198, 225, 226, 227, 228, 229, 230, 231,
+    #232, 233, 234, 235, 236, 237, 238, 255, 303,  311, 312, 313, 314, 315, 316,
 ]
-INSTREAM_VIDEO_VENDOR_TYPES = [297, 220, 306, 307, 308, 309, 310, 317, 318,]
+# INSTREAM_VIDEO_VENDOR_TYPES = [297, 220, 306, 307, 308, 309, 310, 317, 318,]
+INSTREAM_VIDEO_VENDOR_TYPES = [113,117,]
 
 MAX_EXCLUDED_CATEGORIES = 4
 AD_CATEGORIES = [0, 3, 4, 5, 7, 8, 10, 18, 19, 23, 24, 25,]
@@ -364,7 +367,7 @@ class DefaultBidGenerator(object):
       bid_request: a realtime_bidding_pb2.BidRequest instance
     """
     self._GeneratePublisherData(bid_request)
-    bid_request.detected_language = random.choice(LANGUAGE_CODES)
+    bid_request.detected_language.append(random.choice(LANGUAGE_CODES))
     self._GenerateVerticals(bid_request)
 
   def _GenerateAdSlot(self, bid_request):
